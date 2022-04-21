@@ -24,12 +24,11 @@ body {
   overflow: hidden;
   height: 100vh;
 }
+
 main {
   overflow-y: auto;
 }
-aside {
-  flex: 1 0 10%;
-}
+
 .App {
   display: flex;
   height: 100%;
@@ -46,3 +45,15 @@ aside {
   }
   
 }
+
+.Sidebar {
+  background-color: lightcoral;
+  display: flex;
+}
+
+a {
+  text-decoration: none;
+ }
+ li {
+  list-style: none;
+ }

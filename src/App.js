@@ -1,6 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
+import MainContent from './content/MainContent';
 import './Navbar.css';
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
@@ -21,9 +22,7 @@ function App() {
           </li>
         </ul>
       </aside>
-      <main className="Main-Content">
-        Put cool financial details here
-      </main>
+      <MainContent />
     </div>
   );
 }

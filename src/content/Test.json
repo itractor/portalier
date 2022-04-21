@@ -1,0 +1,33 @@
+[
+    {
+        "year": 2021,
+        "price": 50,
+        "totalEarnings": 1000000,
+        "totalExpenditures": 10000
+    },
+    {
+        "year": 2020,
+        "price": 200,
+        "totalEarnings": 2000000,
+        "totalExpenditures": 50000
+    },
+    {
+        "year": 2019,
+        "price": 20,
+        "totalEarnings": 2000000,
+        "totalExpenditures": 40000
+    },
+    {
+        "year": 2018,
+        "price": 150,
+        "totalEarnings": 2000000,
+        "totalExpenditures": 20000
+    },
+    {
+        "year": 2017,
+        "price": 160,
+        "totalEarnings": 2000000,
+        "totalExpenditures": 10000
+    }
+
+]
