@@ -2,28 +2,25 @@ import './App.css';
 import MainContent from './content/MainContent';
 import './Navbar.css';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import Sidebar from './navigation/Sidebar';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import About from './content/About';
+
 
 function App() {
   return (
-    <div className="App">
-      <aside className="Sidebar">
-        <ul>
-          <li>
-            Home
-          </li>
-          <li>
-            My portfolio
-          </li>
-          <li>
-            Search Stocks
-          </li>
-          <li>
-            About
-          </li>
-        </ul>
-      </aside>
-      <MainContent />
-    </div>
+
+      <Router>
+        <div className="App">
+        <Sidebar />
+        <Routes>
+          <Route path="/" element={<MainContent />} />
+          <Route path="search" element={<MainContent />} />
+          <Route path="about" element={<About />} />
+        </Routes>
+        </div>
+      </Router>
+    
   );
 }
 
