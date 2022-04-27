@@ -39,6 +39,8 @@ function StockData() {
             setGetResult(err.message);
         }
     }
+
+    // fix with hooks tomorrow https://reactjs.org/docs/hooks-effect.html
       
 
     const Data = getDataById().map(
