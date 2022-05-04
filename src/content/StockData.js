@@ -1,90 +1,43 @@
-import useState from "react";
-
-async function GetStockByTicker() {
-  fetch('http://localhost:8080/stock/MOWI').then(async (response) => {
-    const data = await response.json();
-    console.log("test" + data)
-    return data;
-  })
-}
-
+import React, { useState, useEffect } from 'react';
 
 function StockData() {
-    const [getResult, setGetResult] = useState(null);
-    const fortmatResponse = (res) => {
-      return JSON.stringify(res, null, 2);
-    }
+    const [error, setError] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [items, setItems] = useState([]);
 
-
-    async function getDataById() {
-        
-        try {
-            const res = await fetch('http://localhost:8080/stock/MOWI');
-            if (!res.ok) {
-                const message = `An error has occured: ${res.status} - ${res.statusText}`;
-                throw new Error(message);
+    useEffect(() => {
+        fetch("http://localhost:8080/stock/MOWI")
+          .then(res => res.json())
+          .then(
+            (result) => {
+              setIsLoaded(true);
+              setItems(result);
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+              setIsLoaded(true);
+              setError(error);
             }
-            const data = await res.json();
-            const result = {
-                data: data,
-                status: res.status,
-                statusText: res.statusText,
-                headers: {
-                "Content-Type": res.headers.get("Content-Type"),
-                "Content-Length": res.headers.get("Content-Length"),
-                },
-            };
-            setGetResult(fortmatResponse(result));
-        } catch (err) {
-            setGetResult(err.message);
-        }
+          )
+    }, [])
+
+    if (error) {
+    return <div>Error: {error.message}</div>;
+    } else if (!isLoaded) {
+    return <div>Loading...</div>;
+    } else {
+    return (
+        <ul>
+        {items.map(item => (
+            <li key={item.id}>
+            {item.ticker} {item.revenue}
+            </li>
+        ))}
+        </ul>
+    );
     }
-
-    // fix with hooks tomorrow https://reactjs.org/docs/hooks-effect.html
-      
-
-    const Data = getDataById().map(
-        (info)=>{
-
-            console.log(info.reportyear);
-            console.log(setGetResult)
-
-            return(
-                <tr>
-                    <td>
-                        {info.reportyear}
-                    </td>
-                    <td>
-                        To be integrated
-                    </td>
-                    <td>
-                        {info.totalEarnings}
-                    </td>
-                    <td>
-                        {info.totalExpenditures}
-                    </td>
-                </tr>
-            )
-        }
-    )
-
-    return(
-        <div className="StockData">
-            <table className="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Year</th>
-                        <th>Price</th>
-                        <th>Total Earnings</th>
-                        <th>Total Expenditures</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {Data}
-                </tbody>
-            </table>
-        </div>
-    )
 }
 
 export default StockData
