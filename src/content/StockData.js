@@ -29,13 +29,25 @@ function StockData() {
     return <div>Loading...</div>;
     } else {
     return (
-        <ul>
-        {items.map(item => (
-            <li key={item.id}>
-            {item.ticker} {item.revenue}
-            </li>
-        ))}
-        </ul>
+        <table>
+            <thead>
+                <tr>
+                    <th>{items[0].ticker}</th>
+                </tr>
+                <tr>
+                    <th>{items[0].reportyear.key}</th>
+                    <th>{items[0].reportyear.key}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {items.map(item => (
+                <tr key={item.id}>
+                    <td>{item.reportyear}</td>
+                    <td>{item.revenue}</td>
+                </tr>
+            ))}
+            </tbody>
+        </table>
     );
     }
 }
