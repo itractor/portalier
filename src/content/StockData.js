@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Table from 'react-bootstrap/Table';
 
 function StockData() {
     const [error, setError] = useState(null);
@@ -29,14 +30,14 @@ function StockData() {
     return <div>Loading...</div>;
     } else {
     return (
-        <table>
+        <Table striped bordered hover variant="dark">
             <thead>
                 <tr>
                     <th>{items[0].ticker}</th>
                 </tr>
                 <tr>
-                    <th>{items[0].reportyear.key}</th>
-                    <th>{items[0].reportyear.key}</th>
+                    <th>Year</th>
+                    <th>revenue</th>
                 </tr>
             </thead>
             <tbody>
@@ -47,7 +48,7 @@ function StockData() {
                 </tr>
             ))}
             </tbody>
-        </table>
+        </Table>
     );
     }
 }

@@ -12,6 +12,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import MainContent from './content/MainContent';
 import About from './content/About';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
