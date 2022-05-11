@@ -12,6 +12,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import MainContent from './content/MainContent';
 import About from './content/About';
+import TopPicks from './content/TopPicks';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -22,6 +23,7 @@ root.render(
         <Route path="/" element={<App />}>
           <Route path="about" element={<About />} />
           <Route path="search" element={<MainContent />} />
+          <Route path="toppicks" element={<TopPicks />} />
         </Route>
       </Routes>
     </BrowserRouter>,
