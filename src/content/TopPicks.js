@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 
-function StockData() {
+
+function TopPicks() {
+
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:8080/stock/MOWI")
+        fetch("http://localhost:8080/topStocks")
           .then(res => res.json())
           .then(
             (result) => {
@@ -30,27 +32,27 @@ function StockData() {
     return <div>Loading...</div>;
     } else {
     return (
-        <Table striped bordered hover variant="dark">
-            <thead>
-                <tr>
-                    <th>{items[0].ticker}</th>
-                </tr>
-                <tr>
-                    <th>Year</th>
-                    <th>revenue</th>
-                </tr>
-            </thead>
-            <tbody>
-                {items.map(item => (
-                <tr key={item.id}>
-                    <td>{item.reportyear}</td>
-                    <td>{item.revenue}</td>
-                </tr>
-            ))}
-            </tbody>
-        </Table>
+        <div className="Top-picks">
+            <Table striped bordered hover variant="dark">
+                <thead>
+                    <tr>
+                        <th>Score</th>
+                        <th>Ticker</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {items.map(item => (
+                    <tr key={item.id}>
+                        <td>{item.score}</td>
+                        <td>{item.ticker}</td>
+                    </tr>
+                ))}
+                </tbody>
+            </Table>
+        </div>
     );
     }
+
 }
 
-export default StockData
+export default TopPicks
